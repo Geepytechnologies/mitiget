@@ -47,3 +47,5 @@ app.listen(5000,()=>{
     connect();
     console.log("Backend server is running")}
 )
+
+module.exports = app;
