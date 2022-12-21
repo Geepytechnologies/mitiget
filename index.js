@@ -40,8 +40,12 @@ app.use((err, req, res, next) => {
     })
 })
 
+app.get('/', (req,res)=>{
+  res.send("Reveal")
+})
 
 const connect = ()=>{
+  mongoose.set("strictQuery", false);
   mongoose.connect(process.env.MONGODB_URI)
   .then(()=>{
     console.log("MongoDB is connected")
@@ -51,9 +55,9 @@ const connect = ()=>{
   })
 }
 
+const port = process.env.PORT || 5000;
 
-
-app.listen(5000,()=>{
+app.listen(port,()=>{
     connect();
     console.log("Backend server is running")}
 )
