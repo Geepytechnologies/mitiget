@@ -2,6 +2,10 @@ import express from "express";
 import { update, deleteUser, getUser, subscribe, unsubscribe, like, dislike, getAllUsers } from "../controllers/user.js";
 import { verifyToken } from "../verifyToken.js";
 
+/* const express = require("express");
+const { update, deleteUser, getUser, subscribe, unsubscribe, like, dislike, getAllUsers} = require("../controllers/user.js");
+const {verifyToken} = require("../verifyToken.js"); */
+
 const router = express.Router();
 
 //update user

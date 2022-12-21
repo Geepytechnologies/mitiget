@@ -9,6 +9,16 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 
+/* const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const userRoute = require("./routes/users.js")
+const videoRoute = require("./routes/videos.js")
+const commentRoute = require("./routes/comments.js")
+const authRoute = require("./routes/auth.js")
+const cookieParser = require("cookie-parser")
+const cors = require("cors") */
+
 const app = express();
 dotenv.config();
 
@@ -48,4 +58,4 @@ app.listen(5000,()=>{
     console.log("Backend server is running")}
 )
 
-module.exports = app;
+// module.exports = app;

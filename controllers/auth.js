@@ -4,6 +4,11 @@ import bcrypt from "bcryptjs";
 import { createError } from "../error.js";
 import jwt from "jsonwebtoken";
 
+/* const User = require("../models/User.js");
+const bcrypt = require("bcryptjs");
+const {createError} = require("../error.js");
+const jwt = require("jsonwebtoken"); */
+
 export const signup = async (req,res,next)=>{
   const existingusername = await User.findOne({username: req.body.username})
   const existingemail = await User.findOne({email: req.body.email})

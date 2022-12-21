@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+// const mongoose = require("mongoose");
+
+
 const VideoSchema = new mongoose.Schema({
     userId: {
         type: String,

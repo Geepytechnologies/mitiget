@@ -2,6 +2,10 @@ import { createError } from "../error.js";
 import Comment from "../models/Comments.js";
 import Video from "../models/Video.js";
 
+/* const {createError} = require("../error.js");
+const Comment = require("../models/Comments.js");
+const Video = require("../models/Video.js"); */
+
 export const addComment = async (req, res, next) => {
   const newComment = new Comment({ ...req.body, userID: req.user.id });
   try {
