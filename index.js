@@ -9,20 +9,14 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 
-/* const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const userRoute = require("./routes/users.js")
-const videoRoute = require("./routes/videos.js")
-const commentRoute = require("./routes/comments.js")
-const authRoute = require("./routes/auth.js")
-const cookieParser = require("cookie-parser")
-const cors = require("cors") */
-
 const app = express();
 dotenv.config();
 
-app.use(cors({origin: "*"}));
+app.use((req,res,next)=>{
+  res.header("Access-Control-Allow-Credentials", true)
+  next();
+})
+app.use(cors({origin: "http://localhost:3000", credentials: true}));
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoute);

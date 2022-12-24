@@ -1,9 +1,6 @@
 import express from "express";
 import { googleAuth, signin, signup } from "../controllers/auth.js";
 
-/* const express = require("express");
-const { googleAuth, signin, signup } = require("../controllers/auth.js")
- */
 const router = express.Router();
 
 router.post('/signup', signup)

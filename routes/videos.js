@@ -2,9 +2,6 @@ import express from "express";
 import { addVideo, updateVideo, deleteVideo, getVideo, addView, trending, random, subscribedvideos, getByTag, search } from "../controllers/video.js";
 import { verifyToken } from "../verifyToken.js";
 
-/* const express = require("express");
-const { addVideo, updateVideo, deleteVideo, getVideo, addView, trending, random, subscribedvideos, getByTag, search} = require("../controllers/video.js");
-const {verifyToken} = require("../verifyToken.js"); */
 
 const router = express.Router();
 

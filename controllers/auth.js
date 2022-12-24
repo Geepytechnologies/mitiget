@@ -4,10 +4,6 @@ import bcrypt from "bcryptjs";
 import { createError } from "../error.js";
 import jwt from "jsonwebtoken";
 
-/* const User = require("../models/User.js");
-const bcrypt = require("bcryptjs");
-const {createError} = require("../error.js");
-const jwt = require("jsonwebtoken"); */
 
 export const signup = async (req,res,next)=>{
   const existingusername = await User.findOne({username: req.body.username})
@@ -42,9 +38,10 @@ export const signin = async (req,res,next)=>{
 
     res.cookie('_token', token, {
         httpOnly: true,
-        expiresin: 60 * 60
+        // secure: true,
+        // maxAge: 3600 * 24,
     })
-    res.status(200).json({others, token});
+    .status(200).json(others);
   }catch(err){
     next(err);
   }

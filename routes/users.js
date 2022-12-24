@@ -1,10 +1,7 @@
 import express from "express";
-import { update, deleteUser, getUser, subscribe, unsubscribe, like, dislike, getAllUsers } from "../controllers/user.js";
+import { update, deleteUser, getUser, subscribe, unsubscribe, like, dislike, getAllUsers, checkUser } from "../controllers/user.js";
 import { verifyToken } from "../verifyToken.js";
 
-/* const express = require("express");
-const { update, deleteUser, getUser, subscribe, unsubscribe, like, dislike, getAllUsers} = require("../controllers/user.js");
-const {verifyToken} = require("../verifyToken.js"); */
 
 const router = express.Router();
 
@@ -12,10 +9,13 @@ const router = express.Router();
 router.put("/:id",verifyToken, update)
 
 //delete user
-router.put("/:id", verifyToken, deleteUser)
+router.delete("/:id", verifyToken, deleteUser)
 
 //get a user
 router.get("/find/:id", getUser)
+
+//check a user
+router.get("/check", verifyToken, checkUser)
 
 //get all users
 router.get("/find", getAllUsers)
@@ -32,7 +32,7 @@ router.put("/like/:videoId", verifyToken, like)
 
 
 //dislike a video
-router.put("/like/:videoId", verifyToken, dislike)
+router.put("/dislike/:videoId", verifyToken, dislike)
 
 
 

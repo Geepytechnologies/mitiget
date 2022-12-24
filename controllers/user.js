@@ -2,9 +2,6 @@ import { createError } from "../error.js"
 import User from "../models/User.js";
 import Video from "../models/Video.js";
 
-/* const {createError} = require("../error.js");
-const User = require("../models/User.js");
-const Video = require("../models/Video.js"); */
 
 export const update = async (req,res,next)=>{
     if(req.params.id === req.user.id){
@@ -24,6 +21,13 @@ export const getUser = async (req,res,next)=>{
    try{
       const user = await User.findById(req.params.id);
       res.status(200).json(user);
+   }catch(err){
+    next(err);
+   }
+}
+export const checkUser = (req,res,next)=>{
+   try{
+      res.status(200).json("authorized");
    }catch(err){
     next(err);
    }
