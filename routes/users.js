@@ -1,5 +1,5 @@
 import express from "express";
-import { update, deleteUser, getUser, subscribe, unsubscribe, like, dislike, getAllUsers, checkUser } from "../controllers/user.js";
+import { update, deleteUser, getUser, subscribe, unsubscribe, like, dislike, getAllUsers, checkUser, GetVideosByUser } from "../controllers/user.js";
 import { verifyToken } from "../verifyToken.js";
 
 
@@ -19,6 +19,9 @@ router.get("/check", verifyToken, checkUser)
 
 //get all users
 router.get("/find", getAllUsers)
+
+//get videos by a user
+router.get("/find/videos/:userid", GetVideosByUser)
 
 //subscribe a user
 router.put("/subscribe/:id",verifyToken, subscribe)
