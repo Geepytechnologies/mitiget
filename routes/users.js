@@ -15,7 +15,7 @@ router.delete("/:id", verifyToken, deleteUser)
 router.get("/find/:id", getUser)
 
 //check a user
-router.get("/check", verifyToken, checkUser)
+router.get("/", verifyToken, checkUser)
 
 //get all users
 router.get("/find", getAllUsers)
