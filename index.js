@@ -7,10 +7,15 @@ import commentRoute from "./routes/comments.js"
 import authRoute from "./routes/auth.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
+import {URL} from "url";
 
+const __dirname = new URL('.', import.meta.url).pathname;
 
 const app = express();
 dotenv.config();
+
+// app.use("/", express.static(path.join(__dirname + "/dist"))); //
 
 app.use((req,res,next)=>{
   res.header("Access-Control-Allow-Credentials", true)
@@ -34,9 +39,21 @@ app.use((err, req, res, next) => {
     })
 })
 
-app.get('/', (req,res)=>{
+/* if(process.env.NODE_ENV === "production"){
+    app.use(express.static("/dist"));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname + "dist", "index.html"));
+    })
+} */
+
+app.use(express.static("dist"));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname + "dist", "index.html"));
+    })
+
+/* app.get('/', (req,res)=>{
   res.send("Reveal")
-})
+}) */
 
 const connect = ()=>{
   mongoose.set("strictQuery", false);
