@@ -15,7 +15,7 @@ const __dirname = new URL('.', import.meta.url).pathname;
 const app = express();
 dotenv.config();
 
-// app.use("/", express.static(path.join(__dirname + "/dist"))); //
+const myclient = path.join(__dirname + "../frontend/dist"); //
 
 app.use((req,res,next)=>{
   res.header("Access-Control-Allow-Credentials", true)
@@ -46,11 +46,12 @@ app.use((err, req, res, next) => {
     })
 } */
 
-app.use(express.static("dist"));
+app.use(express.static("../frontend/dist"));
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname + "dist", "index.html"));
-    })
-
+        res.sendFile(path.resolve(myclient +  "/index.html"));
+      })
+      console.log(__dirname + "../")
+      console.log(myclient)
 /* app.get('/', (req,res)=>{
   res.send("Reveal")
 }) */
