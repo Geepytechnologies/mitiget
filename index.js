@@ -46,12 +46,10 @@ app.use((err, req, res, next) => {
     })
 } */
 
-app.use(express.static("../frontend/dist"));
+app.use(express.static("dist"));
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(myclient +  "/index.html"));
+        res.sendFile(path.resolve(__dirname + "dist" +  "index.html"));
       })
-      console.log(__dirname + "../")
-      console.log(myclient)
 /* app.get('/', (req,res)=>{
   res.send("Reveal")
 }) */
