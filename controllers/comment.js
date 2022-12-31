@@ -6,15 +6,8 @@ import Video from "../models/Video.js";
 export const addComment = async (req, res, next) => {
   const newComment = new Comment({ ...req.body, userID: req.user.id });
   try {
-    const comment = await Comment.findOne({userID: req.body.userID, videoID: req.body.videoID });
-    if(comment){
-      return res.status(400).json({
-        message: "You've already commented on this video"
-      });
-    }else{
       const savedComment = await newComment.save();
       res.status(200).send(savedComment);
-    }
   } catch (err) {
     next(err);
   }
