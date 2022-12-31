@@ -10,7 +10,7 @@ router.post('/',verifyToken, addVideo);
 router.put('/:id',verifyToken, updateVideo);
 router.delete('/:id',verifyToken, deleteVideo);
 router.get('/find/:id', getVideo);
-router.put('/view/:id', addView);
+router.put('/view/:id',verifyToken, addView);
 router.get('/trending', trending);
 router.get('/random', random);
 router.get('/subscribedvideos', subscribedvideos);

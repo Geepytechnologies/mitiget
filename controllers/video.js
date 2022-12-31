@@ -51,14 +51,22 @@ export const getVideo = async (req,res,next)=>{
       }
 }
 export const addView = async (req,res,next)=>{
+  const existingViewer = await Video.findOne({viewers: {$in: req.user.id}});
+  if(existingViewer){
+    res.json('you have already viewed the video')
+  }else{
     try{
         await Video.findByIdAndUpdate(req.params.id, {
-            $inc: {views:1}
+            $inc: {views:1},
+            $push: {
+                viewers: req.user.id
+            }
         });
         res.status(200).json("you have viewed this video");
       }catch(err){
           next(err);
       }
+  }
 }
 export const trending = async (req,res,next)=>{
     try{
