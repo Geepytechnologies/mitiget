@@ -57,23 +57,38 @@ app.get("*", (req, res) => {
 app.get("/", (req, res) => {
   res.send("Reveal");
 });
-const connect = () => {
+const connect = async () => {
   mongoose.set("strictQuery", false);
-  mongoose
-    .connect(process.env.MONGODB_URI)
-    .then(() => {
-      console.log("MongoDB is connected");
-    })
-    .catch((err) => {
-      throw err;
-    });
+  // mongoose
+  //   .connect(process.env.MONGODB_URI)
+  //   .then(() => {
+  //     console.log("MongoDB is connected");
+  //   })
+  //   .catch((err) => {
+  //     throw err;
+  //   });
+
+  try {
+    const conn = await mongoose.connect(process.env.MONGODB_URI);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
 };
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => {
-  connect();
-  console.log("Backend server is running");
+// app.listen(port, () => {
+//   connect();
+//   console.log("Backend server is running");
+// });
+
+//Connect to the database before listening
+connect().then(() => {
+  app.listen(port, () => {
+    console.log("listening for requests");
+  });
 });
 
 // module.exports = app;
