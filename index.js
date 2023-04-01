@@ -16,7 +16,7 @@ const app = express();
 dotenv.config();
 
 const myclient = path.join(__dirname + "../frontend/dist"); //
-
+//https://comfortable-mite-underwear.cyclic.app/
 app.use(cors({ origin: process.env.DOMAIN, credentials: true }));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", true);
@@ -59,15 +59,6 @@ app.get("/", (req, res) => {
 });
 const connect = async () => {
   mongoose.set("strictQuery", false);
-  // mongoose
-  //   .connect(process.env.MONGODB_URI)
-  //   .then(() => {
-  //     console.log("MongoDB is connected");
-  //   })
-  //   .catch((err) => {
-  //     throw err;
-  //   });
-
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
@@ -79,11 +70,6 @@ const connect = async () => {
 
 const port = process.env.PORT || 5000;
 
-// app.listen(port, () => {
-//   connect();
-//   console.log("Backend server is running");
-// });
-
 //Connect to the database before listening
 connect().then(() => {
   app.listen(port, () => {
@@ -91,4 +77,4 @@ connect().then(() => {
   });
 });
 
-// module.exports = app;
+module.exports = app;
