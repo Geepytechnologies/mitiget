@@ -2,35 +2,22 @@ import mongoose from "mongoose";
 
 // const mongoose = require("mongoose");
 
-
-const UserSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true
+const UserSchema = new mongoose.Schema(
+  {
+    fullname: {
+      type: String,
+      required: true,
     },
     email: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true,
     },
     password: {
-        type: String,
+      type: String,
     },
-    img: {
-        type: String
-    },
-    subscribers: {
-        type: Number,
-        default: 0
-    },
-    subscribedUsers: {
-        type: [String]
-    },
-    fromGoogle: {
-        type: Boolean,
-        default: false
-    }
-},{timestamps: true});
+  },
+  { timestamps: true }
+);
 
 export default mongoose.model("users", UserSchema);

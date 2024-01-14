@@ -5,18 +5,9 @@ import { createError } from "../error.js";
 import jwt from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
-  const existingusername = await User.findOne({ username: req.body.username });
   const existingemail = await User.findOne({ email: req.body.email });
-  const existinguser = await User.findOne({
-    email: req.body.email,
-    username: req.body.username,
-  });
   try {
-    if (existinguser) return next(createError(409, "User already exists"));
-    else if (existingemail)
-      return next(createError(409, "Email already exists"));
-    else if (existingusername)
-      return next(createError(409, "Username is unavailable"));
+    if (existingemail) return next(createError(409, "Email already exists"));
     else {
       const salt = bcrypt.genSaltSync(10);
       const hashedpassword = bcrypt.hashSync(req.body.password, salt);
@@ -30,7 +21,7 @@ export const signup = async (req, res, next) => {
 };
 export const signin = async (req, res, next) => {
   try {
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ username: req.body.email });
     if (!user) return next(createError(404, "User not found"));
 
     const isMatched = bcrypt.compareSync(req.body.password, user.password);
