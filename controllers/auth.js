@@ -16,6 +16,7 @@ export const signup = async (req, res, next) => {
       res.status(201).json("User has been Created");
     }
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };
@@ -32,6 +33,7 @@ export const signin = async (req, res, next) => {
 
     res.status(200).json({ others, accessToken });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };
